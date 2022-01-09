@@ -1,0 +1,30 @@
+# This is Git's per-user configuration file.
+[user]
+  name = Justin Miron
+  email = justin@readyset.io
+
+[core]
+  editor = nvim
+  excludesfile = ~/config/gitignore
+
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+  branch = false
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+
+[alias]
+  unstage = reset HEAD
+  uncommit = reset --soft HEAD^
+  upload = push gerrit HEAD:refs/for/main
+  set-upstream = branch --set-upstream-to=main
+  feature-off-main = !"git checkout -b $1; git set-upstream"
+	feature-off-current = !"CURRENT=`git rev-parse --abbrev-ref HEAD`; git checkout -b $1; git branch --set-upstream-to=$CURRENT"
+
+[oh-my-zsh]
+  hide-status = 1
+  hide-dirty = 1
