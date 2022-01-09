@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
+Plug 'nvim-lua/lsp-status.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -25,6 +26,7 @@ Plug 'ray-x/lsp_signature.nvim'
 
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+
 
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
@@ -61,7 +63,11 @@ require ('lualine').setup({
     theme = 'onedark',
     icons_enabled = false,
   },
+  sections = { lualine_c = { "require'lsp-status'.status()" } },
 })
+
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
 
 -- lsp
 local lspconfig = require'lspconfig'
