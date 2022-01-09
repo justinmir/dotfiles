@@ -9,23 +9,29 @@
     "position": "top",
 
     // If height property would be not present, it'd be calculated dynamically
-    "height": 30,
+    "height": 34,
 
     "modules-left": [
         "sway/workspaces",
-        "sway/mode"
     ],
     "modules-center": [
         "sway/window"
     ],
     "modules-right": [
         "network",
+        "custom/separator",
         "memory",
         "cpu",
+        "disk",
+        "custom/separator",
         "temperature",
+        "custom/separator",
         "battery",
+        "custom/separator",
         "tray",
+        "custom/separator",
         "clock#date",
+        "custom/separator",
         "clock#time"
     ],
 
@@ -41,7 +47,7 @@
             "critical": 15
         },
         // Connected to AC
-        "format": "  {icon}  {capacity}%", // Icon: bolt
+        "format": "<span font='20' rise='-3000'>{icon}</span> {capacity}%",
         // Not connected to AC
         "format-discharging": "{icon}  {capacity}%",
         "format-icons": [
@@ -62,13 +68,13 @@
 
     "clock#date": {
       "interval": 10,
-      "format": "  {:%e %b %Y}", // Icon: calendar-alt
+      "format": "<span font='16' rise='-3000'></span> {:%e %b %Y}", // Icon: calendar-alt
       "tooltip-format": "{:%e %B %Y}"
     },
 
     "cpu": {
         "interval": 5,
-        "format": "  {usage}% ({load})", // Icon: microchip
+        "format": "CPU {usage}% ({load})", // Icon: microchip
         "states": {
           "warning": 70,
           "critical": 90
@@ -77,24 +83,28 @@
 
     "memory": {
         "interval": 5,
-        "format": "  {}%", // Icon: memory
+        "format": "Mem {}%", // Icon: memory
         "states": {
             "warning": 70,
             "critical": 90
         }
     },
 
+    "disk": {
+        "interval": 30,
+        "format": "Disk {percentage_used}% ",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        } 
+    },
+
     "network": {
         "interval": 5,
-        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
+        "format-wifi": "<span font='16' rise='-3000'></span> {essid} ({signalStrength}%)", // Icon: wifi
         "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
         "format-disconnected": "⚠  Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}"
-    },
-
-    "sway/mode": {
-        "format": "<span style=\"italic\">  {}</span>", // Icon: expand-arrows-alt
-        "tooltip": false
     },
 
     "sway/window": {
@@ -108,17 +118,19 @@
             "2": [],
             "3": [],
             "4": [], 
+            "5": [],
             "7": []
         },
         "all-outputs": false,
         "disable-scroll": true,
-        "format": "{icon} {name}",
+        "format": "<span font='16' rise='-3000'>{icon}</span>{name}",
         "format-icons": {
-            "1": "", // Icon: terminal
-            "2": "", // Icon: terminal
-            "3": "", // Icon: chrome
-            "4": "", // Icon: slack
-            "7": "", // Icon: terminal
+            "1": " ", // Icon: terminal
+            "2": " ", // Icon: terminal
+            "3": " ", // Icon: chrome
+            "4": " ", // Icon: slack
+            "5": " ", // Icon: notes 
+            "7": " ", // Icon: terminal
             "default": ""
         }
     },
@@ -126,7 +138,7 @@
     "pulseaudio": {
         //"scroll-step": 1,
             "format": "{icon}  {volume}%",
-            "format-bluetooth": "{icon}  {volume}%",
+            "format-bluetooth": "{<span font='16' rise='-3000'>{icon}</span> {volume}%",
             "format-muted": "",
             "format-icons": {
             "headphones": "",
@@ -143,7 +155,7 @@
     "temperature": {
       "critical-threshold": 80,
       "interval": 5,
-      "format": "{icon}  {temperatureC}°C",
+      "format": "{icon} {temperatureC}°C",
       "format-icons": [
           "", // Icon: temperature-empty
           "", // Icon: temperature-quarter
@@ -155,8 +167,14 @@
     },
 
     "tray": {
-        "icon-size": 21,
-        "spacing": 10
+        "icon-size": 16,
+        "spacing": 5
+    },
+
+    "custom/separator": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
     }
 
 }

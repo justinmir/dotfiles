@@ -50,8 +50,8 @@
 #waybar {
     background: #323232;
     color: white;
-    font-family: Cantarell, Noto Sans, sans-serif;
-    font-size: 13px;
+    font-family: SourceCodePro, Cantarell, Noto Sans, sans-serif;
+    font-size: 15px;
 }
 
 /* Each module */
@@ -135,6 +135,10 @@
     border-top: 2px solid white;
     /* To compensate for the top border and still have vertical centering */
     padding-bottom: 2px;
+}
+
+#custom-separator {
+  color: #595959;
 }
 
 #network {
