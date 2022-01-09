@@ -1,4 +1,5 @@
 set termguicolors
+let mapleader = "\<Space>"
 
 " Install plugins
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -121,10 +122,10 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
   -- Get signatures (and _only_ signatures) when in argument lists.
@@ -144,13 +145,19 @@ lspconfig.rust_analyzer.setup {
   },
   settings = {
     ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
+      },
       cargo = {
-        allFeatures = true,
+        loadOutDirsFromCheck = true,
       },
       completion = {
-	postfix = {
-	  enable = false,
-	},
+	    postfix = {
+	      enable = false,
+	    },
+      },
+      procMacro = {
+        enable = true
       },
     },
   },
@@ -186,6 +193,8 @@ set cmdheight=2
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
 
+autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true }
+
 " Editor settings
 filetype plugin indent on
 set autoindent
@@ -212,6 +221,40 @@ set softtabstop=4
 set tabstop=4
 set expandtab
 set cmdheight=1
+
+noremap <leader>s :Rg<CR>
+let g:fzf_layout = { 'down': '~30%' }
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+nnoremap <C-j> <Esc>
+inoremap <C-j> <Esc>
+vnoremap <C-j> <Esc>
+snoremap <C-j> <Esc>
+xnoremap <C-j> <Esc>
+cnoremap <C-j> <C-c>
+onoremap <C-j> <Esc>
+lnoremap <C-j> <Esc>
+tnoremap <C-j> <Esc>
+
+vnoremap <C-h> :nohlsearch<cr>
+nnoremap <C-h> :nohlsearch<cr>
+
+map <C-p> :GFiles<CR>
+nmap <leader>; :Buffers<CR>
+nnoremap <C-u> :cn<CR>
+nnoremap <C-i> :cp<CR>
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+
+" Close quickfix / location list with leader+c
+noremap <leader>c :ccl <bar> lcl<CR>
 
 " Jump to last edit position on opening file
 if has("autocmd")

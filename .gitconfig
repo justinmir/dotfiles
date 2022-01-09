@@ -5,7 +5,8 @@
 
 [core]
   editor = nvim
-  excludesfile = ~/config/gitignore
+  pager = delta
+  excludesfile = ~/dotfiles/.gitignore
 
 [pager]
   diff = delta
@@ -23,7 +24,7 @@
   upload = push gerrit HEAD:refs/for/main
   set-upstream = branch --set-upstream-to=main
   feature-off-main = !"git checkout -b $1; git set-upstream"
-	feature-off-current = !"CURRENT=`git rev-parse --abbrev-ref HEAD`; git checkout -b $1; git branch --set-upstream-to=$CURRENT"
+  feature-off-current = !"CURRENT=`git rev-parse --abbrev-ref HEAD`; git checkout -b $1; git branch --set-upstream-to=$CURRENT"
 
 [oh-my-zsh]
   hide-status = 1

@@ -1,6 +1,7 @@
 google-chrome
 nerd-fonts-complete
 obsidian
+rust-analyzer-git
 slack-wayland
 wlr-randr
 yay
