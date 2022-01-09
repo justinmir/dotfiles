@@ -1,0 +1,7 @@
+google-chrome
+nerd-fonts-complete
+obsidian
+slack-wayland
+wlr-randr
+yay
+zoom
