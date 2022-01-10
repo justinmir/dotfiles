@@ -15,12 +15,12 @@ ENABLE_CORRECTION="true"
 
 export HISTSIZE=100000
 export HISTFILESIZE=100000
+export MOZ_ENABLE_WAYLAND=1
 
 plugins=(git fasd zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 source "$HOME/.cargo/env"
 set -o vi
-
 
 # aliases
 alias zshconfig="vim ~/.zshrc"
@@ -39,5 +39,5 @@ export CFN_BUCKET=readysettech-tcat-justin-us-east-2
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-	  exec sway
+	exec sway
 fi
