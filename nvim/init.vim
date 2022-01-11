@@ -34,12 +34,13 @@ Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'chriskempson/base16-vim'
 "Plug 'joshdick/onedark.vim'
+"
+Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 
@@ -64,7 +65,7 @@ require ('lualine').setup({
     theme = 'onedark',
     icons_enabled = false,
   },
-  sections = { lualine_c = { "require'lsp-status'.status()" } },
+  sections = { lualine_x = { "require'lsp-status'.status()" } },
 })
 
 local lsp_status = require('lsp-status')
@@ -206,9 +207,6 @@ set hidden
 set nowrap
 set nojoinspaces
 let g:sneak#s_next = 1
-let g:vim_markdown_new_list_item_indent = 0
-let g:vim_markdown_auto_insert_bullets = 0
-let g:vim_markdown_frontmatter = 1
 set printfont=:h10
 set printencoding=utf-8
 set printoptions=paper:letter
