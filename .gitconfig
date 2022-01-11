@@ -5,7 +5,6 @@
 
 [core]
   editor = nvim
-  pager = delta
   excludesfile = ~/dotfiles/.gitignore
 
 [pager]
