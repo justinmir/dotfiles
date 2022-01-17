@@ -190,6 +190,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+default_border pixel 2
+
 #
 # Status Bar:
 #
