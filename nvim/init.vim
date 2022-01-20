@@ -230,10 +230,10 @@ onoremap <C-j> <Esc>
 lnoremap <C-j> <Esc>
 tnoremap <C-j> <Esc>
 
-vnoremap <C-h> :nohlsearch<cr>
-nnoremap <C-h> :nohlsearch<cr>
+vnoremap <leader>h :nohlsearch<cr>
+nnoremap <leader>h :nohlsearch<cr>
 
-map <C-p> :GFiles<CR>
+map <C-p> :Files<CR>
 nmap <leader>; :Buffers<CR>
 nnoremap <left> :bp<CR>
 nnoremap <right> :bn<CR>

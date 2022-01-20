@@ -35,6 +35,7 @@ alias v='f -e nvim'
 export EDITOR='vim'
 
 export CFN_BUCKET=readysettech-tcat-justin-us-east-2
+export XDG_CURRENT_DESKTOP=sway
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
