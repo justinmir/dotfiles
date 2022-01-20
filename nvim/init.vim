@@ -1,3 +1,4 @@
+set shell=/bin/bash
 set termguicolors
 let mapleader = "\<Space>"
 
@@ -21,13 +22,11 @@ Plug 'nvim-lua/lsp-status.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'ray-x/lsp_signature.nvim'
 
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-
 
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
@@ -41,6 +40,8 @@ Plug 'chriskempson/base16-vim'
 "Plug 'joshdick/onedark.vim'
 "
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 call plug#end()
 
@@ -60,6 +61,7 @@ call Base16hi("Comment", g:base16_gui03, "", g:base16_cterm09, "", "", "")
 " LUA!
 lua << END
 local cmp = require'cmp'
+require ('gitsigns').setup()
 require ('lualine').setup({
   options = {
     theme = 'onedark',
@@ -107,7 +109,7 @@ local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  --Enable completion triggered by <c-x><c-o>
+    --Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
@@ -147,15 +149,12 @@ lspconfig.rust_analyzer.setup {
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = {
-        command = "clippy",
+          extraArgs = {"--target-dir", "/home/ubuntu/scratch/rust-analyzer-target"},
       },
-      cargo = {
-        loadOutDirsFromCheck = true,
-      },
-      completion = {
-	    postfix = {
-	      enable = false,
-	    },
+      server = {
+        extraEnv = {
+          ["CARGO_TARGET_DIR"] = "/home/ubuntu/scratch/rust-analyzer-target",
+        },
       },
       procMacro = {
         enable = true
@@ -164,14 +163,6 @@ lspconfig.rust_analyzer.setup {
   },
   capabilities = capabilities,
 }
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
-    signs = true,
-    update_in_insert = true,
-  }
-)
 END
 
 " Enable type inlay hints
@@ -244,8 +235,6 @@ nnoremap <C-h> :nohlsearch<cr>
 
 map <C-p> :GFiles<CR>
 nmap <leader>; :Buffers<CR>
-nnoremap <C-u> :cn<CR>
-nnoremap <C-i> :cp<CR>
 nnoremap <left> :bp<CR>
 nnoremap <right> :bn<CR>
 nmap <leader>w :w<CR>
@@ -262,3 +251,4 @@ endif
 
 " Follow Rust code style rules
 au Filetype rust set colorcolumn=100
+au Filetype gitcommit set colorcolumn=73
