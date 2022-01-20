@@ -30,7 +30,7 @@ Plug 'hrsh7th/vim-vsnip'
 
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'commit': '7505d5b' }
 Plug 'rhysd/vim-clang-format'
 Plug 'godlygeek/tabular'
 
@@ -148,14 +148,6 @@ lspconfig.rust_analyzer.setup {
   },
   settings = {
     ["rust-analyzer"] = {
-      checkOnSave = {
-          extraArgs = {"--target-dir", "/home/ubuntu/scratch/rust-analyzer-target"},
-      },
-      server = {
-        extraEnv = {
-          ["CARGO_TARGET_DIR"] = "/home/ubuntu/scratch/rust-analyzer-target",
-        },
-      },
       procMacro = {
         enable = true
       },
