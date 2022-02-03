@@ -49,9 +49,6 @@ require ('lualine').setup({
 })
 EOF
 
-" rust
-let g:rustfmt_autosave = 1
-
 set completeopt=menuone,noinsert,noselect
 " Better display for messages
 set cmdheight=2
@@ -123,6 +120,8 @@ endif
 " Follow Rust code style rules
 au Filetype rust set colorcolumn=100
 au Filetype gitcommit set colorcolumn=73
+
+let g:rustfmt_autosave = 1
 
 " Coc nvim settings
 " Use tab for trigger completion with characters ahead and navigate.
