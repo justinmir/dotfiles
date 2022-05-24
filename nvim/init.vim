@@ -16,15 +16,21 @@ Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Language Srever Support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Language specific plugins
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim', { 'commit': '7505d5b' }
+Plug 'hashivim/vim-terraform'
+Plug 'darrikonn/vim-gofmt', { 'do': ':GoUpdateBinaries' }
+Plug 'rodjek/vim-puppet'
+Plug 'honza/vim-snippets'
 
+" Nice things
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'chriskempson/base16-vim'
-
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
@@ -35,7 +41,19 @@ set background = "dark"
 colorscheme base16-default-dark
 
 " Make comments more prominent -- they are important.
-call Base16hi("Comment", g:base16_gui03, "", g:base16_cterm09, "", "", "")
+call Base16hi("Comment", g:base16_gui0C, "", g:base16_cterm09, "", "", "")
+
+" Rust things
+au Filetype rust set colorcolumn=100
+au Filetype gitcommit set colorcolumn=73
+let g:rustfmt_autosave = 1
+
+"Terraform
+let g:terraform_fmt_on_save=1
+let g:terraform_align=1
+
+"Golang
+autocmd BufWritePre *.go :GoFmt
 
 " Setup cmp, gitsigns, lualine.
 lua << EOF
@@ -117,11 +135,7 @@ if has("autocmd")
   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" Follow Rust code style rules
-au Filetype rust set colorcolumn=100
-au Filetype gitcommit set colorcolumn=73
 
-let g:rustfmt_autosave = 1
 
 " Coc nvim settings
 " Use tab for trigger completion with characters ahead and navigate.

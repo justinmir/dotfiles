@@ -1,0 +1,5 @@
+#!/bin/bash
+
+conky -c /home/justin/dotfiles/conky/conky_maia &&
+
+exit 0

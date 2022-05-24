@@ -12,5 +12,26 @@
         "CARGO_TARGET_DIR": "/tmp/rust-analyzer-clippy"
     },
     "rust-analyzer.inlayHints.chainingHints": false,
-    "rust-analyzer.inlayHints.enable": false
+    "rust-analyzer.inlayHints.enable": false,
+	"languageserver": {
+		"terraform": {
+			"command": "terraform-ls",
+			"args": ["serve"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
+			"initializationOptions": {},
+			"settings": {}
+		}
+	},
+    "languageserver": {
+        "puppet": {
+        "command": "ruby",
+        "args": ["/home/justin/utils/puppet-editor-services/puppet-languageserver","--stdio","--puppet-settings=--moduledir,/path/to/module/path"],
+        "cwd": "/home/justin/utils/puppet-editor-services",
+        "filetypes": ["puppet"],
+        "rootPatterns": [".git/", "metadata.json"]
+        }
+    }
 }
