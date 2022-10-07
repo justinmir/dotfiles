@@ -30,6 +30,16 @@ alias la='exa -a'
 alias ll='exa -lah'
 alias vim='nvim'
 export EDITOR='vim'
+export ANSIBLE_REMOTE_USER=justin.miron
+alias ssh-agent="run-agent"
+alias ssh="TERM=xterm ssh"
+alias sshpass="TERM=xterm sshpass"
+alias git="noglob git"
 
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+setopt HIST_IGNORE_SPACE
+setopt nocorrectall
