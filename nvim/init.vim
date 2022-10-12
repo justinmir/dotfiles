@@ -1,47 +1,6 @@
-set shell=/bin/bash
+set shell=/run/current-system/sw/bin/zsh
 set termguicolors
 let mapleader = "\<Space>"
-
-" Install plugins
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin()
-
-Plug 'justinmk/vim-sneak'
-Plug 'airblade/vim-rooter'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Language Srever Support
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Language specific plugins
-Plug 'cespare/vim-toml'
-Plug 'stephpy/vim-yaml'
-Plug 'rust-lang/rust.vim', { 'commit': '7505d5b' }
-Plug 'hashivim/vim-terraform'
-Plug 'darrikonn/vim-gofmt', { 'do': ':GoUpdateBinaries' }
-Plug 'rodjek/vim-puppet'
-Plug 'honza/vim-snippets'
-
-" Nice things
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'chriskempson/base16-vim'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'lewis6991/gitsigns.nvim'
-
-call plug#end()
-
-set background = "dark"
-colorscheme base16-default-dark
-
-" Make comments more prominent -- they are important.
-call Base16hi("Comment", g:base16_gui0C, "", g:base16_cterm09, "", "", "")
 
 " Rust things
 au Filetype rust set colorcolumn=100
@@ -65,6 +24,23 @@ require ('lualine').setup({
   },
   sections = { lualine_x = { "g:coc_status" } },
 })
+
+require('onedark').setup({
+  style = 'warmer',
+  term_colors = true,
+  ending_tildes = false,
+
+  lualine = {
+    transparent = true,
+  },
+})
+require('onedark').load()
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', 'ff', builtin.find_files, {})
+vim.keymap.set('n', 'fg', builtin.live_grep, {})
+vim.keymap.set('n', 'fb', builtin.buffers, {})
+vim.keymap.set('n', 'fh', builtin.help_tags, {})
 EOF
 
 set completeopt=menuone,noinsert,noselect
@@ -96,15 +72,6 @@ set softtabstop=4
 set tabstop=4
 set expandtab
 set cmdheight=1
-
-noremap <leader>s :Rg<CR>
-let g:fzf_layout = { 'down': '~30%' }
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
 
 nnoremap <C-j> <Esc>
 inoremap <C-j> <Esc>
@@ -143,8 +110,7 @@ endif
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+      \ "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort

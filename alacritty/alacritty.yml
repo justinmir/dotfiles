@@ -431,6 +431,8 @@ font:
 #  program: /bin/bash
 #  args:
 #    - --login
+#shell:
+#program: /usr/bin/env zsh
 
 # Startup directory
 #
