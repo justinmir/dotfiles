@@ -14,6 +14,11 @@ let g:terraform_align=1
 "Golang
 autocmd BufWritePre *.go :GoFmt
 
+"C
+autocmd FileType cpp ClangFormatAutoEnable
+autocmd FileType c ClangFormatAutoEnable
+"autocmd BufWritePre *.cpp,*.c,*.cc,*.h :ClangFormat
+
 " Setup cmp, gitsigns, lualine.
 lua << EOF
 require ('gitsigns').setup()

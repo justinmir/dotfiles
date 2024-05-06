@@ -5,4 +5,4 @@ ZSH_THEME_GIT_PROMPT_SUFFIX=")"
 ZSH_THEME_GIT_PROMPT_DIRTY=""
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-RPROMPT='$(am-i-artifactory) $(am-i-aws) $(am-in-agent)'
+RPROMPT='$(am-i-artifactory) $(am-i-aws) $(am-in-agent) $(am-i-kubectl)'
