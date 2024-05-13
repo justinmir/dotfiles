@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TOKEN_LOCATION="/home/justinmiron/.ssh/backup-token"
+SSH_KEY="/home/justinmiron/.ssh/automated_backup"
 
 git add .
 
