@@ -19,6 +19,10 @@ autocmd FileType cpp ClangFormatAutoEnable
 autocmd FileType c ClangFormatAutoEnable
 "autocmd BufWritePre *.cpp,*.c,*.cc,*.h :ClangFormat
 
+lua << EOF
+  require ('config')
+EOF
+
 " Setup cmp, gitsigns, lualine.
 lua << EOF
 require ('gitsigns').setup()
@@ -235,3 +239,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+

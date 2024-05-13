@@ -1,6 +1,8 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+exec_always --no-startup-id /home/justinmiron/utils/scripts/startup
+
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod1
 
@@ -320,8 +322,6 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh --material
-
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
   client.focused          #556064 #556064 #80FFF9 #FDF6E3
@@ -393,8 +393,7 @@ floating_minimum_size 70 x 24
 floating_maximum_size 4096 x 2048
 
 # Custom keybinds and commands
-bindsym $mod+v exec --no-startup-id ~/utils/scripts/switch-monitors
-bindsym $mod+p exec --no-startup-id ~/utils/scripts/sr
+bindsym $mod+v exec --no-startup-id /home/justinmiron/utils/scripts/switch-monitors
 bindsym XF86AudioRaiseVolume exec "pamixer -i 5 --unmute"
 bindsym XF86AudioLowerVolume exec "pamixer -d 5 --unmute"
 bindsym XF86AudioMute exec "pamixer -t"
