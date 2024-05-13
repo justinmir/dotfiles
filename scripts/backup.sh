@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-cd ~/git/dotfiles
 git add .
 
 now=$(date)

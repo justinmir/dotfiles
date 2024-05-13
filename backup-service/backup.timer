@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup dotfiles and packages
+
+[Timer]
+OnBootSec=60min
+OnUnitActiveSec=1d
+
+[Install]
+WantedBy=timers.target

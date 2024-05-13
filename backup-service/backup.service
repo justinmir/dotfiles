@@ -1,0 +1,10 @@
+[Unit]
+Description=Run backup weekly and on boot
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /home/justinmiron/git/dotfiles/scripts/get-packages-and-backup-dotfiles.sh
+User=justinmiron
+
+[Install]
+WantedBy=multi-user.target

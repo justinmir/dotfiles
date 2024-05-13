@@ -1,7 +1,10 @@
 #!/bin/bash
 
+set -x
 
-cd ~/git/dotfiles
+BACKUP_DIR="/home/justinmiron/git/dotfiles"
+
+cd ${BACKUP_DIR}
 pacman -Qqe > ./arch/pkglist.txt
 git add .
 
@@ -10,3 +13,5 @@ if [ ! -z "$(git status --porcelain)" ]; then
     git commit -m "automatic sync ${now}"
     git push
 fi
+
+./scripts/backup.sh
