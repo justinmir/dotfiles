@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TOKEN_LOCATION="/home/justinmiron/.ssh/backup-token"
+
 git add .
 
 now=$(date)
