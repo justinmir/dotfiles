@@ -1,4 +1,3 @@
 #!/bin/bash
 
-pacman -Qqen > pkglist.txt
-pacman -Qqem > pkglist_aur.txt
+pacman -Qqe > pkglist.txt
