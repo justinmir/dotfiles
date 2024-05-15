@@ -218,6 +218,7 @@ ttf-dejavu
 ttf-liberation
 ttf-opensans
 tumbler
+ufw
 unrar
 unzip
 upower
