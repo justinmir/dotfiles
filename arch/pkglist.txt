@@ -182,6 +182,7 @@ python
 python-capng
 python-defusedxml
 python-packaging
+python-pipenv
 python-pyqt5
 rebuild-detector
 reflector
