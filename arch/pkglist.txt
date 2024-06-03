@@ -84,6 +84,7 @@ glances
 google-chrome
 google-cloud-cli
 gopls
+goreleaser
 gsfonts
 gst-libav
 gst-plugin-pipewire
