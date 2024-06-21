@@ -16,6 +16,7 @@ b43-fwcutter
 base
 base-devel
 bash-completion
+bear
 bind
 bluez
 bluez-utils
