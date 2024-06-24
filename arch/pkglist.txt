@@ -261,6 +261,7 @@ xorg-xkill
 xorg-xrandr
 xterm
 yay
+yq
 zip
 zoom
 zsh
