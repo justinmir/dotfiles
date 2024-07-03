@@ -184,6 +184,7 @@ postgresql-libs
 power-profiles-daemon
 protobuf
 protoc-gen-go
+psensor
 pv
 pyenv
 python
