@@ -73,6 +73,7 @@ ffmpegthumbnailer
 firewalld
 flameshot
 fleet-orbit
+flux-go
 foomatic-db
 foomatic-db-engine
 foomatic-db-gutenprint-ppds
